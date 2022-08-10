@@ -1,7 +1,9 @@
 <?php
 
 use Components\Views\Home\HomePage;
+use Components\Views\NotFound\NotFoundPage;
 use Components\Views\Pages\CounterPage;
+use Components\Views\Pages\TodoAppPage;
 
 require __DIR__ . "/vendor/autoload.php";
 

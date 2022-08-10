@@ -64,10 +64,17 @@ class ViewiEngine
         // register at Viewi
         Route::get($url, $component);
         // register at Leaf
-        app()->get($url, function () use ($url) {
-            $response = Router::handle($url, 'get');
-            response()->markup($response);
-        });
+        if ($url === '*') {
+            app()->set404(function () use ($url) {
+                $response = Router::handle($url, 'get');
+                response()->markup($response);
+            });
+        } else {
+            app()->get($url, function () use ($url) {
+                $response = Router::handle($url, 'get');
+                response()->markup($response);
+            });
+        }
         // TODO: implement an adapter for HttpClient
     }
 }
