@@ -1,0 +1,14 @@
+{
+    "require": {
+        "leafs/leaf": "^3.0",
+        "viewi/viewi": "^0.4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Components\\": "src/ViewiApp/Components/"
+        },
+        "files": [
+			"src/functions.php"
+		]
+    }
+}
