@@ -27,7 +27,7 @@ class ViewiEngine
         }
         $this->adapter = new ViewiLeafAdapter($instance);
         Route::setAdapter($this->adapter);
-        $instance->setResponseClass(RawResponse::class);
+        // $instance->setResponseClass(RawResponse::class);
         $this->instance = $instance;
         // set up Viewi
         include $this->dir . 'viewi.php';
