@@ -27,6 +27,11 @@ class RawResponse extends \Leaf\Http\Response
         parent::json($data, $code, $showCode);
     }
 
+    public function getContent()
+    {
+        return $this->content;
+    }
+
     public function makeInternal()
     {
         $this->doNotSend = true;
