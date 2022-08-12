@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d170e40bbfa33313886254ab1c8b78e",
+    "content-hash": "b941da351cdcbc37b24baa9c47bf4451",
     "packages": [
         {
             "name": "leafs/anchor",
@@ -203,16 +203,16 @@
         },
         {
             "name": "leafs/leaf",
-            "version": "v3.0.1",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leafsphp/leaf.git",
-                "reference": "ce7ce8bd720b5f9634bc622899122ee693c7ec3b"
+                "reference": "7cc488dce1cc859eec728265940015bfcb994588"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leafsphp/leaf/zipball/ce7ce8bd720b5f9634bc622899122ee693c7ec3b",
-                "reference": "ce7ce8bd720b5f9634bc622899122ee693c7ec3b",
+                "url": "https://api.github.com/repos/leafsphp/leaf/zipball/7cc488dce1cc859eec728265940015bfcb994588",
+                "reference": "7cc488dce1cc859eec728265940015bfcb994588",
                 "shasum": ""
             },
             "require": {
@@ -258,7 +258,7 @@
             ],
             "support": {
                 "issues": "https://github.com/leafsphp/leaf/issues",
-                "source": "https://github.com/leafsphp/leaf/tree/v3.0.1"
+                "source": "https://github.com/leafsphp/leaf/tree/v3.1.0"
             },
             "funding": [
                 {
@@ -270,7 +270,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-05-29T19:32:50+00:00"
+            "time": "2022-08-11T01:26:08+00:00"
         },
         {
             "name": "leafs/router",
