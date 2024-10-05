@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use Leaf\Http\Response;
+
 class RawResponse extends \Leaf\Http\Response
 {
     /**
@@ -9,11 +11,13 @@ class RawResponse extends \Leaf\Http\Response
      * @var mixed
      */
     private $data = null;
+
     /**
      * 
      * @var bool Stop sending the response (no echo)
      */
     private bool $doNotSend = false;
+
     /**
      * Output json encoded data with an HTTP code/message
      * 
@@ -42,10 +46,10 @@ class RawResponse extends \Leaf\Http\Response
      * 
      * @return $this
      */
-    public function send()
+    public function send(): Response
     {
-        if (!$this->doNotSend)
-            parent::send();
+        if (!$this->doNotSend) parent::send();
+        return $this;
     }
 
     public function getRawData()

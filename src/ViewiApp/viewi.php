@@ -2,6 +2,9 @@
 
 use Viewi\App;
 
-$config = require 'config.php';
-// Routes has been moved to index.php, registered with Leaf
-App::init($config);
+$config = require  __DIR__ . '/config.php';
+$publicConfig = require  __DIR__ . '/publicConfig.php';
+
+$app = new App($config, $publicConfig);
+
+return $app;

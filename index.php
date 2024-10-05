@@ -1,25 +1,20 @@
 <?php
 
+use App\Bridge\ViewiHandler;
+use App\Bridge\ViewiLeafBridge;
 use Components\Models\PostModel;
-use Components\Views\Home\HomePage;
-use Components\Views\NotFound\NotFoundPage;
-use Components\Views\Pages\CounterPage;
-use Components\Views\Pages\TodoAppPage;
+use Viewi\App;
+use Viewi\Bridge\IViewiBridge;
 
 require __DIR__ . "/vendor/autoload.php";
 
-viewi()->init();
+$app = new Leaf\App();
 
-viewi()->get('/', HomePage::class);
-viewi()->get('/counter', CounterPage::class);
-viewi()->get('/todo', TodoAppPage::class);
-viewi()->get('*', NotFoundPage::class);
-
-app()->get("/api/data", function () {
+$app->get("/api/data", function () {
     response()->json(["message" => "Hello World!"]);
 });
 
-app()->get("/api/posts/{id}", function ($id) {
+$app->get("/api/posts/{id}", function ($id) {
     $post = new PostModel();
     $post->Id = $id ?? 0;
     $post->Name = 'Viewi ft. Leaf';
@@ -27,11 +22,35 @@ app()->get("/api/posts/{id}", function ($id) {
     response()->json($post);
 });
 
-app()->run();
 
+// pass action to the Viewi app
 
+/**
+ * Viewi set up
+ * The idea is to let Viewi handle its own routes by registering a 404 action
+ * @param RouteCollection $routes 
+ * @return void 
+ */
+function viewiSetUp(\Leaf\App $leafApp)
+{
+    /**
+     * @var App
+     */
+    $app = require __DIR__ . '/src/ViewiApp/viewi.php';
+    require __DIR__ . '/src/ViewiApp/routes.php';
+    $bridge = new ViewiLeafBridge($leafApp);
+    $app->factory()->add(IViewiBridge::class, function () use ($bridge) {
+        return $bridge;
+    });
+    ViewiHandler::setViewiApp($app);
 
+    $leafApp->all('.*', function () {
+        (new ViewiHandler())->handle();
+    });
+}
 
-// Viewi application here
-// include __DIR__ . '/src/ViewiApp/viewi.php';
-// Viewi\App::handle();
+viewiSetUp($app);
+
+$app->run();
+
+// php -S localhost:83

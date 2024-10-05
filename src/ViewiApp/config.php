@@ -1,15 +1,24 @@
 <?php
 
-use Viewi\PageEngine;
+use Viewi\AppConfig;
 
-const VIEWI_COMPONENTS = __DIR__ . '/Components';
-const PUBLIC_FOLDER = __DIR__ . '/../../';
+$d = DIRECTORY_SEPARATOR;
+$viewiAppPath = __DIR__ . $d;
+$componentsPath =  $viewiAppPath . 'Components';
+$buildPath = $viewiAppPath . 'build';
+$jsPath = $viewiAppPath . 'js';
+$assetsSourcePath = $viewiAppPath . 'assets';
+$publicPath = __DIR__ . '/../../';
+$assetsPublicUrl = '';
 
-return [
-    PageEngine::SOURCE_DIR =>  VIEWI_COMPONENTS,
-    PageEngine::SERVER_BUILD_DIR =>  __DIR__ . '/build',
-    PageEngine::PUBLIC_ROOT_DIR => PUBLIC_FOLDER,
-    PageEngine::DEV_MODE => true,
-    PageEngine::RETURN_OUTPUT => true,
-    PageEngine::COMBINE_JS => true
-];
+return (new AppConfig())
+    ->buildTo($buildPath)
+    ->buildFrom($componentsPath)
+    ->withJsEntry($jsPath)
+    ->putAssetsTo($publicPath)
+    ->assetsPublicUrl($assetsPublicUrl)
+    ->withAssets($assetsSourcePath)
+    // ->combine()
+    ->developmentMode(true)
+    ->buildJsSourceCode()
+    ->watchWithNPM(true);

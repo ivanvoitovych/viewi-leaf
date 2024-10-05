@@ -1,7 +1,7 @@
 {
     "require": {
-        "leafs/leaf": "^3.1",
-        "viewi/viewi": "^0.4.4"
+        "viewi/viewi": "^2.3",
+        "leafs/leaf": "^3.7"
     },
     "autoload": {
         "psr-4": {
@@ -9,7 +9,7 @@
             "App\\": "src/App/"
         },
         "files": [
-			"src/functions.php"
-		]
+            "src/functions.php"
+        ]
     }
 }
